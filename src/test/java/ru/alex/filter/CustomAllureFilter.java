@@ -1,4 +1,4 @@
-package ru.alex.utils;
+package ru.alex.filter;
 
 import io.qameta.allure.restassured.AllureRestAssured;
 
