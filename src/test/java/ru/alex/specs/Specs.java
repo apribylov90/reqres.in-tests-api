@@ -7,10 +7,11 @@ import io.restassured.specification.ResponseSpecification;
 
 import static io.restassured.RestAssured.with;
 import static io.restassured.filter.log.LogDetail.ALL;
+import static ru.alex.utils.CustomAllureFilter.withCustomAllureFilter;
 
 public class Specs {
     public static RequestSpecification requestSpec = with()
-            .filter(new AllureRestAssured())
+            .filter(withCustomAllureFilter())
             .log().uri()
             .contentType("application/json");
 
