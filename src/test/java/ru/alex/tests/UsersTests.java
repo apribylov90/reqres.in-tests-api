@@ -2,7 +2,10 @@ package ru.alex.tests;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import ru.alex.models.user.UserResponseModel;
+import ru.alex.models.user.UsersResponseModel;
 
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
@@ -51,5 +54,29 @@ public class UsersTests extends BaseTest {
                     .spec(responseSpec(404));
         });
 
+    }
+
+    @DisplayName("Удачное получение списка пользователей")
+    @ParameterizedTest
+    @ValueSource(ints= {1, 2})
+    public void getUsersTest(int page) {
+
+        UsersResponseModel response = given(requestSpec)
+                .when()
+                .get("/users?page=" + page)
+                .then()
+                .spec(responseSpec(200))
+                .extract().as(UsersResponseModel.class);
+
+
+        step("Проверка ответа", () -> {
+            assertThat(response.getSupport()).isNotNull();
+            assertThat(response.getData()).isNotNull();
+
+            assertEquals(6, response.getData().size());
+            assertEquals(page, response.getPage());
+            assertThat(response.getData().get(0).getFirstName()).isNotNull();
+
+        });
     }
 }
