@@ -2,9 +2,9 @@ package ru.alex.config;
 
 import org.aeonbits.owner.Config;
 
-@Config.LoadPolicy(Config.LoadType.MERGE)
+
 @Config.Sources({
-        "classpath:config/auth.properties"})
+        "classpath:config/settings.properties"})
 public interface GeneralConfig extends Config {
 
     @Key("baseUrl")
