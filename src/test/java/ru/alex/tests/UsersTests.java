@@ -16,7 +16,7 @@ public class UsersTests extends BaseTest {
 
     @DisplayName("Успешное получение информации о пользователе")
     @Test
-    public void getUserTest() {
+    public void getUserSuccessfulTest() {
         String expectedEmail = "janet.weaver@reqres.in";
         String expectedFirstName = "Janet";
         String expectedLastName = "Weaver";
@@ -35,6 +35,20 @@ public class UsersTests extends BaseTest {
             assertEquals(expectedEmail, response.getData().getEmail());
             assertEquals(expectedFirstName, response.getData().getFirstName());
             assertEquals(expectedLastName, response.getData().getLastName());
+        });
+
+    }
+
+    @DisplayName("Неудачное получение информации о пользователе")
+    @Test
+    public void getUserUnSuccessfulTest() {
+
+        step("Неудачный запрос и ответ 404", () -> {
+            given(requestSpec)
+                    .when()
+                    .get("/users/404")
+                    .then()
+                    .spec(responseSpec(404));
         });
 
     }
