@@ -59,7 +59,7 @@ public class UsersTests extends BaseTest {
     @DisplayName("Удачное получение списка пользователей")
     @ParameterizedTest
     @ValueSource(ints= {1, 2})
-    public void getUsersTest(int page) {
+    public void getUsersSuccessfulTest(int page) {
 
         UsersResponseModel response = given(requestSpec)
                 .when()
