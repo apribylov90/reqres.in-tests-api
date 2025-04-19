@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.alex.models.login.LoginRequestModel;
 import ru.alex.models.login.LoginSuccessfulResponseModel;
+import ru.alex.models.register.ErrorRegisterResponseModel;
 import ru.alex.models.register.RegisterRequestModel;
 import ru.alex.models.register.RegisterResponseModel;
 
@@ -13,12 +14,12 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static ru.alex.specs.Specs.requestSpec;
 import static ru.alex.specs.Specs.responseSpec;
 
-@DisplayName("API Register")
+@DisplayName("Проверка API Register")
 public class RegisterTests extends BaseTest {
 
     @DisplayName("Удачная регистрация пользователя")
     @Test
-    public void loginSuccessfulTest() {
+    public void registerSuccessfulTest() {
         RegisterRequestModel registerRequestBody = new RegisterRequestModel();
         registerRequestBody.setEmail("eve.holt@reqres.in");
         registerRequestBody.setPassword("pistol");
@@ -35,6 +36,30 @@ public class RegisterTests extends BaseTest {
         step("Проверка ответа", () -> {
             assertThat(response.getId()).isNotNull();
             assertThat(response.getToken()).isNotEmpty();
+        });
+    }
+
+    @DisplayName("Неудачная регистрация пользователя")
+    @Test
+    public void registerUnSuccessfulTest() {
+        RegisterRequestModel registerRequestBody = new RegisterRequestModel();
+        registerRequestBody.setEmail("test@test.com");
+        registerRequestBody.setPassword("test");
+
+        String expectedErrorMesssage = "Note: Only defined users succeed registration";
+
+        ErrorRegisterResponseModel response = given(requestSpec)
+                .body(registerRequestBody)
+                .when()
+                .post("/register")
+                .then()
+                .spec(responseSpec(400))
+                .extract().as(ErrorRegisterResponseModel.class);
+
+
+        step("Проверка ответа", () -> {
+            assertThat(response.getError()).isNotNull();
+            assertThat(response.getError()).isEqualTo(expectedErrorMesssage);
         });
     }
 }
