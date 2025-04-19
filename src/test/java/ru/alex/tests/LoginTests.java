@@ -2,9 +2,9 @@ package ru.alex.tests;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.alex.models.auth.LoginErrorResponseModel;
-import ru.alex.models.auth.LoginRequestModel;
-import ru.alex.models.auth.LoginSuccessfulResponseModel;
+import ru.alex.models.login.LoginErrorResponseModel;
+import ru.alex.models.login.LoginRequestModel;
+import ru.alex.models.login.LoginSuccessfulResponseModel;
 
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
@@ -12,7 +12,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static ru.alex.specs.Specs.requestSpec;
 import static ru.alex.specs.Specs.responseSpec;
 
-@DisplayName("Проверка Login API")
+@DisplayName("Login API")
 public class LoginTests extends BaseTest{
 
     @DisplayName("Удачный вход пользователем")

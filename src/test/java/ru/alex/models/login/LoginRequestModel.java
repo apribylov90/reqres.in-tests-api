@@ -1,4 +1,4 @@
-package ru.alex.models.auth;
+package ru.alex.models.login;
 
 import lombok.Getter;
 import lombok.Setter;
