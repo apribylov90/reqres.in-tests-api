@@ -44,8 +44,15 @@ pipeline {
 
     }
 
-//    post {
-//        always {
+    post {
+        always {
+
+            //Always generate allure report even if tests fail
+
+            sh 'allure generate target/allure-results --clean -o target/allure-report || true'
+
+            allure includeProperties: false, jdk: '', results: [[path: 'target/allure-results']]
+
 //            script {
 //                sh 'rm -f allure-report.zip || true'
 //                // Save current history for next build
@@ -54,6 +61,6 @@ pipeline {
 //            }
 //
 //            archiveArtifacts artifacts: 'history-backup/**', fingerprint: true
-//        }
-//    }
+        }
+    }
 }
