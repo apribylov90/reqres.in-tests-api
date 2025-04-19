@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('github') {
             steps {
-
+                git credentialsId: '1c3c642f-c3f4-4496-89e4-8759c2a81671', url: 'https://github.com/apribylov90/reqres.in-tests-api'
             }
         }
 
