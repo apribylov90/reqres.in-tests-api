@@ -15,7 +15,7 @@ import static ru.alex.specs.Specs.responseSpec;
 @DisplayName("Проверка API Register")
 public class RegisterTests extends BaseTest {
 
-    @DisplayName("Удачная регистрация пользователя")
+    @DisplayName("Успешная регистрация пользователя")
     @Test
     public void registerSuccessfulTest() {
         RegisterRequestModel registerRequestBody = new RegisterRequestModel();

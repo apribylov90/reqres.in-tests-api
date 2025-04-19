@@ -15,7 +15,7 @@ import static ru.alex.specs.Specs.responseSpec;
 @DisplayName("Проверка Login API")
 public class LoginTests extends BaseTest{
 
-    @DisplayName("Удачный вход пользователем")
+    @DisplayName("Успешный вход пользователем")
     @Test
     public void loginSuccessfulTest() {
         LoginRequestModel loginRequestBody = new LoginRequestModel();
