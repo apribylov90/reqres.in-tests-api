@@ -22,19 +22,19 @@ pipeline {
             }
         }
 
-        stage('Restore Allure History') {
-            steps {
-                script {
-                    def oldHistory = 'history-backup'
-                    def newHistory = 'target/allure-results/history'
-
-                    if (fileExists(oldHistory)) {
-                        sh "mkdir -p ${newHistory}"
-                        sh "cp -r ${oldHistory}/* ${newHistory}/"
-                    }
-                }
-            }
-        }
+//        stage('Restore Allure History') {
+//            steps {
+//                script {
+//                    def oldHistory = 'history-backup'
+//                    def newHistory = 'target/allure-results/history'
+//
+//                    if (fileExists(oldHistory)) {
+//                        sh "mkdir -p ${newHistory}"
+//                        sh "cp -r ${oldHistory}/* ${newHistory}/"
+//                    }
+//                }
+//            }
+//        }
 
         stage('generate-allure') {
             steps {
@@ -44,16 +44,16 @@ pipeline {
 
     }
 
-    post {
-        always {
-            script {
-                sh 'rm -f allure-report.zip || true'
-                // Save current history for next build
-                sh 'mkdir -p history-backup'
-                sh 'cp -r target/allure-report/history/* history-backup/ || true'
-            }
-
-            archiveArtifacts artifacts: 'history-backup/**', fingerprint: true
-        }
-    }
+//    post {
+//        always {
+//            script {
+//                sh 'rm -f allure-report.zip || true'
+//                // Save current history for next build
+//                sh 'mkdir -p history-backup'
+//                sh 'cp -r target/allure-report/history/* history-backup/ || true'
+//            }
+//
+//            archiveArtifacts artifacts: 'history-backup/**', fingerprint: true
+//        }
+//    }
 }
