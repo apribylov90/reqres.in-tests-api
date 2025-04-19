@@ -22,45 +22,12 @@ pipeline {
             }
         }
 
-//        stage('Restore Allure History') {
-//            steps {
-//                script {
-//                    def oldHistory = 'history-backup'
-//                    def newHistory = 'target/allure-results/history'
-//
-//                    if (fileExists(oldHistory)) {
-//                        sh "mkdir -p ${newHistory}"
-//                        sh "cp -r ${oldHistory}/* ${newHistory}/"
-//                    }
-//                }
-//            }
-//        }
-
-        stage('generate-allure') {
-            steps {
-                allure includeProperties: false, jdk: '', results: [[path: 'target/allure-results']]
-            }
-        }
-
     }
 
     post {
         always {
-
             //Always generate allure report even if tests fail
-
-            sh 'allure generate target/allure-results --clean -o target/allure-report || true'
-
             allure includeProperties: false, jdk: '', results: [[path: 'target/allure-results']]
-
-//            script {
-//                sh 'rm -f allure-report.zip || true'
-//                // Save current history for next build
-//                sh 'mkdir -p history-backup'
-//                sh 'cp -r target/allure-report/history/* history-backup/ || true'
-//            }
-//
-//            archiveArtifacts artifacts: 'history-backup/**', fingerprint: true
         }
     }
 }
