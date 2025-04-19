@@ -4,12 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import ru.alex.models.register.RegisterRequestModel;
-import ru.alex.models.register.RegisterResponseModel;
-import ru.alex.models.user.CreateUserRequestModel;
-import ru.alex.models.user.CreateUserResponseModel;
-import ru.alex.models.user.UserResponseModel;
-import ru.alex.models.user.UsersResponseModel;
+import ru.alex.models.user.*;
 
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
@@ -60,7 +55,7 @@ public class UsersTests extends BaseTest {
 
     }
 
-    @DisplayName("Удачное получение списка пользователей")
+    @DisplayName("Успешное получение списка пользователей")
     @ParameterizedTest
     @ValueSource(ints= {1, 2})
     public void getUsersSuccessfulTest(int page) {
@@ -84,10 +79,10 @@ public class UsersTests extends BaseTest {
         });
     }
 
-    @DisplayName("Удачное создание пользователя")
+    @DisplayName("Успешное создание пользователя")
     @Test
     public void createUserSuccessfulTest() {
-        CreateUserRequestModel userBody = new CreateUserRequestModel();
+        CreateUpdateUserRequestModel userBody = new CreateUpdateUserRequestModel();
         userBody.setName("Alex");
         userBody.setJob("Tester");
 
@@ -106,6 +101,40 @@ public class UsersTests extends BaseTest {
             assertThat(response.getName()).isEqualTo(userBody.getName());
             assertThat(response.getJob()).isEqualTo(userBody.getJob());
         });
+    }
+
+    @DisplayName("Успешное обновление пользователя")
+    @Test
+    public void updateUserSuccessfulTest() {
+        CreateUpdateUserRequestModel userBody = new CreateUpdateUserRequestModel();
+        userBody.setName("AlexNew");
+        userBody.setJob("TesterNew");
+
+        UpdateUserResponseModel response = given(requestSpec)
+                .body(userBody)
+                .when()
+                .put("/users/2")
+                .then()
+                .spec(responseSpec(200))
+                .extract().as(UpdateUserResponseModel.class);
+
+
+        step("Проверка ответа", () -> {
+            assertThat(response.getName()).isEqualTo(userBody.getName());
+            assertThat(response.getJob()).isEqualTo(userBody.getJob());
+            assertThat(response.getUpdatedAt()).isNotNull();
+        });
+    }
+
+    @DisplayName("Успешное удаления пользователя")
+    @Test
+    public void deleteUserSuccessfulTest() {
+        given(requestSpec)
+                .when()
+                .delete("/users/2")
+                .then()
+                .spec(responseSpec(204));
+
     }
 
 
