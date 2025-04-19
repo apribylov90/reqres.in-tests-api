@@ -2,8 +2,6 @@ package ru.alex.tests;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.alex.models.login.LoginRequestModel;
-import ru.alex.models.login.LoginSuccessfulResponseModel;
 import ru.alex.models.register.ErrorRegisterResponseModel;
 import ru.alex.models.register.RegisterRequestModel;
 import ru.alex.models.register.RegisterResponseModel;
@@ -46,7 +44,7 @@ public class RegisterTests extends BaseTest {
         registerRequestBody.setEmail("test@test.com");
         registerRequestBody.setPassword("test");
 
-        String expectedErrorMesssage = "Note: Only defined users succeed registration";
+        String expectedErrorMessage = "Note: Only defined users succeed registration";
 
         ErrorRegisterResponseModel response = given(requestSpec)
                 .body(registerRequestBody)
@@ -59,7 +57,7 @@ public class RegisterTests extends BaseTest {
 
         step("Проверка ответа", () -> {
             assertThat(response.getError()).isNotNull();
-            assertThat(response.getError()).isEqualTo(expectedErrorMesssage);
+            assertThat(response.getError()).isEqualTo(expectedErrorMessage);
         });
     }
 }

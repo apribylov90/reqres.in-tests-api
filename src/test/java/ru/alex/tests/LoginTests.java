@@ -12,7 +12,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static ru.alex.specs.Specs.requestSpec;
 import static ru.alex.specs.Specs.responseSpec;
 
-@DisplayName("Провертка Login API")
+@DisplayName("Проверка Login API")
 public class LoginTests extends BaseTest{
 
     @DisplayName("Удачный вход пользователем")
