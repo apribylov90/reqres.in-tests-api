@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static ru.alex.specs.Specs.requestSpec;
 import static ru.alex.specs.Specs.responseSpec;
 
-@DisplayName("Проверка User API")
+@DisplayName("User API")
 public class UsersTests extends BaseTest {
 
     @DisplayName("Успешное получение информации о пользователе")
