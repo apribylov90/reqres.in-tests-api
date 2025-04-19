@@ -53,6 +53,7 @@ pipeline {
     post {
         always {
             script {
+                sh 'rm -f allure-report.zip || true'
                 // Save current history for next build
                 sh 'mkdir -p history-backup'
                 sh 'cp -r target/allure-report/history/* history-backup/ || true'
