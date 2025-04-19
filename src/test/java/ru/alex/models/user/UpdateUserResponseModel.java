@@ -1,11 +1,10 @@
 package ru.alex.models.user;
 
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
-@Setter
-public class CreateUserRequestModel {
+public class UpdateUserResponseModel {
     private String name;
     private String job;
+    private String updatedAt;
 }
