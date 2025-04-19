@@ -4,6 +4,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import ru.alex.models.register.RegisterRequestModel;
+import ru.alex.models.register.RegisterResponseModel;
+import ru.alex.models.user.CreateUserRequestModel;
+import ru.alex.models.user.CreateUserResponseModel;
 import ru.alex.models.user.UserResponseModel;
 import ru.alex.models.user.UsersResponseModel;
 
@@ -14,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static ru.alex.specs.Specs.requestSpec;
 import static ru.alex.specs.Specs.responseSpec;
 
-@DisplayName("User API")
+@DisplayName("Проверка User API")
 public class UsersTests extends BaseTest {
 
     @DisplayName("Успешное получение информации о пользователе")
@@ -79,4 +83,30 @@ public class UsersTests extends BaseTest {
 
         });
     }
+
+    @DisplayName("Удачное создание пользователя")
+    @Test
+    public void createUserSuccessfulTest() {
+        CreateUserRequestModel userBody = new CreateUserRequestModel();
+        userBody.setName("Alex");
+        userBody.setJob("Tester");
+
+        CreateUserResponseModel response = given(requestSpec)
+                .body(userBody)
+                .when()
+                .post("/users")
+                .then()
+                .spec(responseSpec(201))
+                .extract().as(CreateUserResponseModel.class);
+
+
+        step("Проверка ответа", () -> {
+            assertThat(response.getId()).isNotNull();
+            assertThat(response.getCreatedAt()).isNotNull();
+            assertThat(response.getName()).isEqualTo(userBody.getName());
+            assertThat(response.getJob()).isEqualTo(userBody.getJob());
+        });
+    }
+
+
 }
