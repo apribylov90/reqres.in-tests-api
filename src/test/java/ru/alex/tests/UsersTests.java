@@ -27,7 +27,7 @@ public class UsersTests extends BaseTest {
                 .when()
                 .get("/users/2")
                 .then()
-                .spec(responseSpec(200))
+                .spec(responseSpec(400))
                 .extract().as(UserResponseModel.class);
 
         step("Проверка ответа", () -> {
