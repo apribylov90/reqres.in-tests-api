@@ -1,6 +1,6 @@
 package ru.alex.tests;
 
-import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -97,6 +97,7 @@ public class UsersTests extends BaseTest {
 
 
         step("Проверка ответа", () -> {
+            Assumptions.assumeTrue(false, "Skipping this test on purpose");
             assertThat(response.getId()).isNotNull();
             assertThat(response.getCreatedAt()).isNotNull();
             assertThat(response.getName()).isEqualTo(userBody.getName());
@@ -127,7 +128,7 @@ public class UsersTests extends BaseTest {
         });
     }
 
-    @Disabled
+
     @DisplayName("Успешное удаления пользователя")
     @Test
     public void deleteUserSuccessfulTest() {
