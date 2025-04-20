@@ -46,7 +46,7 @@ ____
 <a id="jenkins"></a>
 ## Сборка Jenkins:
 <p align="center">  
-<a href=""><img src="assets/screen/" alt="Jenkins" width="950"/></a>  
+<a href=""><img src="assets/screen/jenkins.png" alt="Jenkins" width="950"/></a>  
 </p>
 <a id="console"></a>
 
@@ -66,19 +66,18 @@ ___
 ### *Основная страница отчёта*
 
 <p align="center">  
-<img title="Allure Overview Dashboard" src="assets/screen/" width="850">  
+<img title="Allure Overview Dashboard" src="assets/screen/allure_main.png" width="850">  
 </p>  
 
 ### *Тест-кейсы*
 
 <p align="center">  
-<img title="Allure Tests" src="assets/screen/" width="850">  
+<img title="Allure Tests" src="assets/screen/allure_test.png" width="850">  
 </p>
 
 ### *Графики*
 
   <p align="center">  
-<img title="Allure Graphics" src="assets/screen/" width="850">
+<img title="Allure Graphics" src="assets/screen/allure_graphs.png" width="850">
 
-<img title="Allure Graphics" src="assets/screen/" width="850">  
 </p>
