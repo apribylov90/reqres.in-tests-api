@@ -22,6 +22,7 @@ ____
 <p align="center">  
 <a href="https://www.java.com/"><img src="assets/logo/java.svg" width="50" height="50"  alt="Java"/></a>  
 <a href="https://junit.org/junit5/"><img src="assets/logo/junit5.svg" width="50" height="50"  alt="JUnit 5"/></a>  
+<a href="https://rest-assured.io/"><img src="assets/logo/restassured.png" width="50" height="50"  alt="Rest-assured"/></a>  
 <a href="https://maven.apache.org/"><img src="assets/logo/maven.svg" width="100" height="50"  alt="Maven"/></a>  
 <a href="https://github.com/allure-framework/allure2"><img src="assets/logo/allure.svg" width="50" height="50"  alt="Allure"/></a>    
 <a href="https://www.jenkins.io/"><img src="assets/logo/jenkins.svg" width="50" height="50"  alt="Jenkins"/></a>  
