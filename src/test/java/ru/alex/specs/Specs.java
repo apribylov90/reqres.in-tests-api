@@ -11,13 +11,13 @@ import static ru.alex.filter.CustomAllureFilter.withCustomAllureFilter;
 public class Specs {
     public static RequestSpecification requestSpec = with()
             .filter(withCustomAllureFilter())
-            .log().all()
+//            .log().all()
             .contentType("application/json");
 
     public static ResponseSpecification responseSpec(int statusCode) {
         return new ResponseSpecBuilder()
                 .expectStatusCode(statusCode)
-                .log(ALL)
+//                .log(ALL)
                 .build();
     }
 }
