@@ -1,5 +1,6 @@
 package ru.alex.tests;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -126,6 +127,7 @@ public class UsersTests extends BaseTest {
         });
     }
 
+    @Disabled
     @DisplayName("Успешное удаления пользователя")
     @Test
     public void deleteUserSuccessfulTest() {

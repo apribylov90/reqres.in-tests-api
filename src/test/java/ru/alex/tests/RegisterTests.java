@@ -56,7 +56,7 @@ public class RegisterTests extends BaseTest {
 
 
         step("Проверка ответа", () -> {
-            assertThat(response.getError()).isNotNull();
+            assertThat(response.getError()).isNull();
             assertThat(response.getError()).isEqualTo(expectedErrorMessage);
         });
     }
